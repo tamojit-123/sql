@@ -1,0 +1,56 @@
+=======================
+use mydb;
+
+create table locations (loc_id int primary key , city char(20), state char(20), zipcode varchar(50));
+
+insert into locations values (1,'delhi','New Delhi',34544)
+
+create table dept (did int primary key , dname char(20), loc_id int  ,
+constraint fk foreign  key  (loc_id) references locations (loc_id))
+
+insert into dept  values (20, 'Admin',1)
+
+update dept set did =10 where did=20
+
+delete from locations where loc_id =1
+
+delete from dept where did =20
+
+select * from locations;
+
+select * from dept;
+
+select * from emp;
+
+create table Emp (empid int , ename char(20), esal bigint , did int ,
+constraint dfq foreign key (did) references dept(did) on update cascade)
+
+insert  into emp values (1,'jhon',23424, 20)
+
+drop table emp
+
+alter table emp add constraint chk check (esal >5000)
+
+select * from emp
+
+insert into emp values (2,'rupa',6000,10)
+
+set sql_safe_updates=0
+
+update emp set esal = esal+500 where empid=2
+
+update emp  set ename= 'shubham' , esal = esal+300 where empid =1
+
+select empid , ename as Name from emp
+
+select * from emp
+
+alter table locations modify city char(20) default 'hyd'
+
+select * from locations
+
+insert into locations(loc_id, city, state) values(3,'null','Ts')
+
+delete from emp where empid=1 -- particular record
+
+delete from emp -- complete all records from table . but table structure will be there

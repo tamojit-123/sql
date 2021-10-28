@@ -1,0 +1,147 @@
+Enter password: *********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 21
+Server version: 8.0.26 MySQL Community Server - GPL
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| mytable            |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.08 sec)
+mysql> use mytable;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_mytable |
++-------------------+
+| employee          |
+| student           |
++-------------------+
+2 rows in set (0.14 sec)
+mysql> desc employee;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| id     | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| dept   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.49 sec)
+mysql> insert into employee values(1,'Ramavath',20000,'IT');
+Query OK, 1 row affected (0.32 sec)
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
++------+----------+--------+------+
+1 row in set (0.00 sec)
+mysql> insert into employee values(2,'Shubham',20000,'IT');
+Query OK, 1 row affected (0.18 sec)
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
+|    2 | Shubham  |  20000 | IT   |
++------+----------+--------+------+
+2 rows in set (0.00 sec)
+mysql> insert into employee values(3,'Shashank',20000,'HR');
+Query OK, 1 row affected (0.06 sec)
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
+|    2 | Shubham  |  20000 | IT   |
+|    3 | Shashank |  20000 | HR   |
++------+----------+--------+------+
+3 rows in set (0.00 sec)
+mysql> select id,salary from employee;
++------+--------+
+| id   | salary |
++------+--------+
+|    1 |  20000 |
+|    2 |  20000 |
+|    3 |  20000 |
++------+--------+
+3 rows in set (0.00 sec)
+mysql> select * from employee where dept='IT';
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
+|    2 | Shubham  |  20000 | IT   |
++------+----------+--------+------+
+2 rows in set (0.00 sec)
+mysql> select id,dept where id = 2;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select id,dept from employee  where id = 2;
++------+------+
+| id   | dept |
++------+------+
+|    2 | IT   |
++------+------+
+1 row in set (0.00 sec)
+mysql> select id,dept from employee  where id = 2;
++------+------+
+| id   | dept |
++------+------+
+|    2 | IT   |
++------+------+
+1 row in set (0.00 sec)
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
+|    2 | Shubham  |  20000 | IT   |
+|    3 | Shashank |  20000 | HR   |
++------+----------+--------+------+
+3 rows in set (0.00 sec)
+mysql> select * from employee where name like'S%';
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    2 | Shubham  |  20000 | IT   |
+|    3 | Shashank |  20000 | HR   |
++------+----------+--------+------+
+2 rows in set (0.00 sec)
+mysql> select * from employee where name like'S';
+Empty set (0.00 sec)
+mysql> update employee set salary = salary+3000 where id = 3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    1 | Ramavath |  20000 | IT   |
+|    2 | Shubham  |  20000 | IT   |
+|    3 | Shashank |  23000 | HR   |
++------+----------+--------+------+
+3 rows in set (0.03 sec)
+mysql> delete from employee where id = 1;
+Query OK, 1 row affected (0.23 sec)
+mysql> select * from employee;
++------+----------+--------+------+
+| id   | name     | salary | dept |
++------+----------+--------+------+
+|    2 | Shubham  |  20000 | IT   |
+|    3 | Shashank |  23000 | HR   |
++------+----------+--------+------+
+2 rows in set (0.00 sec)
+mysql>

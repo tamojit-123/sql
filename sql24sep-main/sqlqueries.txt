@@ -1,0 +1,20 @@
+create database mycompany;
+use mycompany;
+create table student
+(s_id int, s_name char(20), s_dob date);
+select * from student;
+alter table student
+add (marks int);
+alter table student
+Drop marks;
+alter table student modify
+s_name varchar(40);
+===================================================
+select * from student
+insert into student values(100,'xx','2021-09-23')
+set sql_safe_updates=0;
+update student set s_name='yy' where s_id=100;
+select * from student;
+delete from student where s_id=100;
+drop table student;
+describe student;

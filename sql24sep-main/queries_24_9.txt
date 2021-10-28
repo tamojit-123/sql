@@ -1,0 +1,293 @@
+Warning: C:\Program Files\MySQL\MySQL Server 5.5\bin\mysql.exe: ignoring option '--no-beep' due to invalid value ''
+Warning: C:\Program Files\MySQL\MySQL Server 5.5\bin\mysql.exe: ignoring option '--no-beep' due to invalid value ''
+Enter password: ************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 7
+Server version: 5.5.59 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| aradhana           |
+| b210086            |
+| b210195            |
+| b210303            |
+| corona             |
+| dummy              |
+| lockdown           |
+| mysql              |
+| performance_schema |
+| pgp                |
+| pgp340             |
+| pgp_b200676        |
+| pgp_java           |
+| sakila             |
+| term3              |
+| term5              |
+| test               |
+| unlockdown         |
+| world              |
++--------------------+
+20 rows in set (0.37 sec)
+
+mysql> use corona;
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_corona |
++------------------+
+| employee         |
+| student          |
++------------------+
+2 rows in set (0.00 sec)
+
+mysql> select employee;
+ERROR 1054 (42S22): Unknown column 'employee' in 'field list'
+mysql> select * from employee;
++----+------------------+---------+---------------+--------+--------------------+
+| id | desig            | emailId | name          | salary | email_id           |
++----+------------------+---------+---------------+--------+--------------------+
+|  4 | Centre Head      | NULL    | Jatin         | 150000 | jatin@niit.com     |
+|  6 | Senior Trainer   | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+|  8 | Network Engineer | NULL    | Hemant        |  31000 | hemant@gmail.com   |
+|  9 | Senior Trainer   | NULL    | Anita         |  35000 | anita@niit.com     |
+| 10 | Prime Minister   | NULL    | Nikhil        | 100000 | nikhil@gmail.com   |
+| 11 | Centre Head      | NULL    | Jatin         | 150000 | jatin@nit.com      |
+| 13 | Clerk            | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train            | NULL    | Komila        |  23000 | kom@niit.com       |
++----+------------------+---------+---------------+--------+--------------------+
+8 rows in set (0.35 sec)
+
+mysql> select * from student;
++------+----------+
+| id   | name     |
++------+----------+
+|  101 | Aradhana |
++------+----------+
+1 row in set (0.08 sec)
+
+mysql> select id, desig from employee;
++----+------------------+
+| id | desig            |
++----+------------------+
+|  4 | Centre Head      |
+|  6 | Senior Trainer   |
+|  8 | Network Engineer |
+|  9 | Senior Trainer   |
+| 10 | Prime Minister   |
+| 11 | Centre Head      |
+| 13 | Clerk            |
+| 14 | Train            |
++----+------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee where salary<=25000;
++----+----------------+---------+---------------+--------+--------------------+
+| id | desig          | emailId | name          | salary | email_id           |
++----+----------------+---------+---------------+--------+--------------------+
+|  6 | Senior Trainer | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+| 13 | Clerk          | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train          | NULL    | Komila        |  23000 | kom@niit.com       |
++----+----------------+---------+---------------+--------+--------------------+
+3 rows in set (0.06 sec)
+
+mysql> select name  from employee where salary<=25000;
++---------------+
+| name          |
++---------------+
+| Abhishek Negi |
+| Sandeep       |
+| Komila        |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student;
++------+----------+
+| id   | name     |
++------+----------+
+|  101 | Aradhana |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> select * from employee;
++----+------------------+---------+---------------+--------+--------------------+
+| id | desig            | emailId | name          | salary | email_id           |
++----+------------------+---------+---------------+--------+--------------------+
+|  4 | Centre Head      | NULL    | Jatin         | 150000 | jatin@niit.com     |
+|  6 | Senior Trainer   | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+|  8 | Network Engineer | NULL    | Hemant        |  31000 | hemant@gmail.com   |
+|  9 | Senior Trainer   | NULL    | Anita         |  35000 | anita@niit.com     |
+| 10 | Prime Minister   | NULL    | Nikhil        | 100000 | nikhil@gmail.com   |
+| 11 | Centre Head      | NULL    | Jatin         | 150000 | jatin@nit.com      |
+| 13 | Clerk            | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train            | NULL    | Komila        |  23000 | kom@niit.com       |
++----+------------------+---------+---------------+--------+--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee where desig='Centre Head' or desig = 'Trainer';
++----+-------------+---------+-------+--------+----------------+
+| id | desig       | emailId | name  | salary | email_id       |
++----+-------------+---------+-------+--------+----------------+
+|  4 | Centre Head | NULL    | Jatin | 150000 | jatin@niit.com |
+| 11 | Centre Head | NULL    | Jatin | 150000 | jatin@nit.com  |
++----+-------------+---------+-------+--------+----------------+
+2 rows in set (0.05 sec)
+
+mysql> select * from employee where desig='Centre Head' or desig = 'Train';
++----+-------------+---------+--------+--------+----------------+
+| id | desig       | emailId | name   | salary | email_id       |
++----+-------------+---------+--------+--------+----------------+
+|  4 | Centre Head | NULL    | Jatin  | 150000 | jatin@niit.com |
+| 11 | Centre Head | NULL    | Jatin  | 150000 | jatin@nit.com  |
+| 14 | Train       | NULL    | Komila |  23000 | kom@niit.com   |
++----+-------------+---------+--------+--------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where desig='Centre Head' and salary = 150000;
++----+-------------+---------+-------+--------+----------------+
+| id | desig       | emailId | name  | salary | email_id       |
++----+-------------+---------+-------+--------+----------------+
+|  4 | Centre Head | NULL    | Jatin | 150000 | jatin@niit.com |
+| 11 | Centre Head | NULL    | Jatin | 150000 | jatin@nit.com  |
++----+-------------+---------+-------+--------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where desig='Centre Head' and salary = 15000;
+Empty set (0.00 sec)
+
+mysql> select * from employee where salary<=25000;
++----+----------------+---------+---------------+--------+--------------------+
+| id | desig          | emailId | name          | salary | email_id           |
++----+----------------+---------+---------------+--------+--------------------+
+|  6 | Senior Trainer | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+| 13 | Clerk          | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train          | NULL    | Komila        |  23000 | kom@niit.com       |
++----+----------------+---------+---------------+--------+--------------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from employee where not salary<=25000;
++----+------------------+---------+--------+--------+------------------+
+| id | desig            | emailId | name   | salary | email_id         |
++----+------------------+---------+--------+--------+------------------+
+|  4 | Centre Head      | NULL    | Jatin  | 150000 | jatin@niit.com   |
+|  8 | Network Engineer | NULL    | Hemant |  31000 | hemant@gmail.com |
+|  9 | Senior Trainer   | NULL    | Anita  |  35000 | anita@niit.com   |
+| 10 | Prime Minister   | NULL    | Nikhil | 100000 | nikhil@gmail.com |
+| 11 | Centre Head      | NULL    | Jatin  | 150000 | jatin@nit.com    |
++----+------------------+---------+--------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where salary>=25000;
++----+------------------+---------+--------+--------+------------------+
+| id | desig            | emailId | name   | salary | email_id         |
++----+------------------+---------+--------+--------+------------------+
+|  4 | Centre Head      | NULL    | Jatin  | 150000 | jatin@niit.com   |
+|  8 | Network Engineer | NULL    | Hemant |  31000 | hemant@gmail.com |
+|  9 | Senior Trainer   | NULL    | Anita  |  35000 | anita@niit.com   |
+| 10 | Prime Minister   | NULL    | Nikhil | 100000 | nikhil@gmail.com |
+| 11 | Centre Head      | NULL    | Jatin  | 150000 | jatin@nit.com    |
++----+------------------+---------+--------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employee where salary between 30000 and 100000;
++----+------------------+---------+--------+--------+------------------+
+| id | desig            | emailId | name   | salary | email_id         |
++----+------------------+---------+--------+--------+------------------+
+|  8 | Network Engineer | NULL    | Hemant |  31000 | hemant@gmail.com |
+|  9 | Senior Trainer   | NULL    | Anita  |  35000 | anita@niit.com   |
+| 10 | Prime Minister   | NULL    | Nikhil | 100000 | nikhil@gmail.com |
++----+------------------+---------+--------+--------+------------------+
+3 rows in set (0.05 sec)
+
+mysql> select * from employee;
++----+------------------+---------+---------------+--------+--------------------+
+| id | desig            | emailId | name          | salary | email_id           |
++----+------------------+---------+---------------+--------+--------------------+
+|  4 | Centre Head      | NULL    | Jatin         | 150000 | jatin@niit.com     |
+|  6 | Senior Trainer   | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+|  8 | Network Engineer | NULL    | Hemant        |  31000 | hemant@gmail.com   |
+|  9 | Senior Trainer   | NULL    | Anita         |  35000 | anita@niit.com     |
+| 10 | Prime Minister   | NULL    | Nikhil        | 100000 | nikhil@gmail.com   |
+| 11 | Centre Head      | NULL    | Jatin         | 150000 | jatin@nit.com      |
+| 13 | Clerk            | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train            | NULL    | Komila        |  23000 | kom@niit.com       |
++----+------------------+---------+---------------+--------+--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee where name like 'A%';
++----+----------------+---------+---------------+--------+--------------------+
+| id | desig          | emailId | name          | salary | email_id           |
++----+----------------+---------+---------------+--------+--------------------+
+|  6 | Senior Trainer | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+|  9 | Senior Trainer | NULL    | Anita         |  35000 | anita@niit.com     |
++----+----------------+---------+---------------+--------+--------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee where name like '%a';
++----+----------------+---------+--------+--------+----------------+
+| id | desig          | emailId | name   | salary | email_id       |
++----+----------------+---------+--------+--------+----------------+
+|  9 | Senior Trainer | NULL    | Anita  |  35000 | anita@niit.com |
+| 14 | Train          | NULL    | Komila |  23000 | kom@niit.com   |
++----+----------------+---------+--------+--------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from employee;
++----+------------------+---------+---------------+--------+--------------------+
+| id | desig            | emailId | name          | salary | email_id           |
++----+------------------+---------+---------------+--------+--------------------+
+|  4 | Centre Head      | NULL    | Jatin         | 150000 | jatin@niit.com     |
+|  6 | Senior Trainer   | NULL    | Abhishek Negi |  12000 | abhishek@gmail.com |
+|  8 | Network Engineer | NULL    | Hemant        |  31000 | hemant@gmail.com   |
+|  9 | Senior Trainer   | NULL    | Anita         |  35000 | anita@niit.com     |
+| 10 | Prime Minister   | NULL    | Nikhil        | 100000 | nikhil@gmail.com   |
+| 11 | Centre Head      | NULL    | Jatin         | 150000 | jatin@nit.com      |
+| 13 | Clerk            | NULL    | Sandeep       |  12000 | sandeep@niit.com   |
+| 14 | Train            | NULL    | Komila        |  23000 | kom@niit.com       |
++----+------------------+---------+---------------+--------+--------------------+
+8 rows in set (0.00 sec)
+
+mysql> select name,salary from employee where desig in('Senior Trainer', 'Clerk','Prime Minister','CA');
++---------------+--------+
+| name          | salary |
++---------------+--------+
+| Abhishek Negi |  12000 |
+| Anita         |  35000 |
+| Nikhil        | 100000 |
+| Sandeep       |  12000 |
++---------------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select name,salary,desig from employee where desig in('Senior Trainer', 'Clerk','Prime Minister','CA');
++---------------+--------+----------------+
+| name          | salary | desig          |
++---------------+--------+----------------+
+| Abhishek Negi |  12000 | Senior Trainer |
+| Anita         |  35000 | Senior Trainer |
+| Nikhil        | 100000 | Prime Minister |
+| Sandeep       |  12000 | Clerk          |
++---------------+--------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select name,salary,desig from employee where desig not in('Senior Trainer', 'Clerk','Prime Minister','CA');
++--------+--------+------------------+
+| name   | salary | desig            |
++--------+--------+------------------+
+| Jatin  | 150000 | Centre Head      |
+| Hemant |  31000 | Network Engineer |
+| Jatin  | 150000 | Centre Head      |
+| Komila |  23000 | Train            |
++--------+--------+------------------+
+4 rows in set (0.00 sec)
+
+mysql>

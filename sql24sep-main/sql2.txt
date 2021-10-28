@@ -1,0 +1,26 @@
+create  database Sample1;
+use sample1;
+create table book (bid int , bname char(20) , bprice decimal, constraint cck1 check (bname in('java','python')));
+select  * from book;
+desc book ;
+-- Dml --
+-- inserting the record in all columns
+insert into book values (100,'java',234.45);
+-- inserting the recod into specific columns ---------------------
+insert into book(bid,bname,bprice) values(210,'python',3443);
+-- can i applied  a restriction to an existing table ---
+-- unique key a key which is applied to columns it doesn't allow the duplicate value but atleast it allow the 1 null value
+alter table book add constraint  uk_price  unique key ( bprice );
+insert into book values (104,'rubby',null);
+select * from book
+create table student (sid int , sname char(20), smarks int unique key)
+-- fetching/reteriving /read  the records from table
+select * from student
+insert into student values(2,'yy',23)
+use sys
+select * from sys_config
+create table customer (cid int , cname char(20), mobileno bigint ,
+constraint compkey primary key (cid, mobileno)
+)
+select * from customer
+insert into  customer  values (2,'jay',2345)
